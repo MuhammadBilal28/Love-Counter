@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+    <title>Love Calculator</title>
+    <style>
+        body{
+            margin: 0%;
+            padding: 0%;
+            background-color: rgb(15, 15, 43);
+        }
+        .container{
+            width: 70em;
+            height:33em ;
+            background-color: #29DAE3;
+            margin-left: 7%;
+            margin-top: 6%;
+            /* align-items: right; */
+            position: absolute;
+        }
+        .user-section{
+            width: 19em;
+            height: 90%;
+            background-color: rgb(172, 231, 255);
+            /* display: inline block; */
+            
+        }
+        .you{
+            position: relative;
+            /* padding-top: 2em; */
+            margin-left: 9%;
+            margin-top: 3%;
+            /* padding-top: 10%; */
+
+        }
+        .crush{
+            margin-left: 45em;
+            margin-top: -475px;
+        }
+        .title{
+            font-size: 40px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(109, 0, 103);
+            padding-left: 110px;
+            /* padding-top: 100px; */
+            margin-top: 10px;
+            position: fixed;
+            
+            /* font-size: ; */
+        }
+        .boy-pic{
+            position: fixed;
+            margin-top: 6%;
+            margin-left: 50px;
+        }
+        .girl-pic{
+            position: fixed;
+            margin-top: 3%;
+            margin-left: 50px;
+        }
+        .tag{
+            position:fixed;
+            font-size: 20px;
+            font-family: cursive;
+            margin-top: 24%;
+            margin-left: 30px;
+        }
+        .tbox{
+            width: 260px;
+            height: 24px;
+            /* border: 1px sol; */
+            /* border: 1 px solid rgb(0, 255, 255); */
+            /* box-shadow: 0 0 10px #26bfb7 */
+            outline: none;
+            position: fixed;
+            margin-top: 28%;
+            margin-left: 20px;
+            border-radius: 5px;
+            border:1px solid rgb(255, 0, 221);
+        }
+        .tbox:focus{
+            box-shadow: 0 0 20px #ff15e0;
+        }
+        .count-love{
+            width: 150px;
+            height: 40px;
+            /* border-radius: 0px; */
+            border-bottom-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background: transparent;
+            cursor: pointer;
+            border: 1px solid rgb(234, 255, 46);
+            font-size: 18px;
+            color: tomato;
+            margin-left: 480px;
+            position: fixed;
+            margin-top: -5em;
+        }
+        .count-love:hover{
+            border-bottom-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 0px;
+            border-top-right-radius: 0px;
+            box-shadow: 0 0 20px rgb(234, 255, 46);
+
+        }
+        .loading-panel{
+            width: 42vh;
+            height: 5vh;
+            background-color: rgb(176, 243, 255);
+            margin-top: -15%;
+            position: fixed;
+            margin-left: 32.5%;
+        }
+        .inner-loading-panel{
+            height: 100%;
+            width: 0%;
+            background-color: rgb(255, 108, 211);
+        }
+        .percent{
+            margin-left: 9%;
+            margin-top: 1px;
+            position: fixed;
+            font-size: 21px;
+            font-family: cursive;
+            color: rgb(4, 3, 39);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+     <div class="user-section you">
+         <span class="title">You</span>
+         <img src="img/Boy.png" alt="You" class="boy-pic">
+         <span class="boy-name-span tag">Your Name</span>
+         <input type="text" class="boy-name tbox">
+        </div>
+        <div class="user-section crush">
+            <span class="title">She</span>
+            <img src="img/girl.png" alt="She" class="girl-pic">
+            <span class="girl-name-span tag">Her Name</span>
+            <input type="text" class="girl-name tbox">
+        </div>
+        <div class="loading-panel">
+            <span class="percent"></span>
+            <div class="inner-loading-panel"></div>
+        </div>
+        <button class="count-love">Count Love</button>
+        <img src="img/logo.jpg" alt="logo" style="margin-left: 31%; width: 18em; height: 11em; margin-top: -35% ; position: fixed;">
+
+    </div>
+
+
+    <script>
+        //selecting Elements
+        const YourName=document.querySelector('.boy-name');
+        const CrushName=document.querySelector('.girl-name');
+        const loading_panel=document.querySelector('.loading-panel');
+        const  inner_loading_panel=document.querySelector('.inner-loading-panel');
+        const percentage=document.querySelector('.percent');
+        const countLoveBtn=document.querySelector('.count-love');
+        let width=0;
+        YourName.addEventListener('focus',function(){
+            inner_loading_panel.style.width= 0 + '%'
+            percentage.textContent=''
+            width=0;
+        })
+        CrushName.addEventListener('focus',function(){
+            inner_loading_panel.style.width= 0 + '%'
+            percentage.textContent=''
+            width=0;
+        })
+        countLoveBtn.addEventListener('click',function(){
+            if(YourName.value=='' || CrushName.value=='' || width>0){
+                return
+            }
+        let rand=Math.floor(Math.random() * 101);
+            let interval=setInterval(function(){
+                if(width>=rand){
+                    clearInterval(interval)
+                    // YourName.value='';
+                    // CrushName.value=''
+                }
+                else{
+                    width++;
+                    inner_loading_panel.style.width=width + '%';
+                    percentage.textContent=`${width} %`
+                }
+            },10)
+
+        })
+    </script>
+    
+</body>
+</html>

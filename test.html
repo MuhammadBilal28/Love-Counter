@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .load{
+           margin-left: 20%;
+           margin-top: 20%;
+        }
+        .loading-panel{
+            width: 50vh;
+            height: 6vh;
+            background-color: rgb(132, 196, 255);
+        }
+        .inner-loading-panel{
+            height: 100%;
+            width: 2vh;
+            background-color: coral;
+        }
+        .percent{
+            margin-left: 14%;
+            font-size: 20px;
+            margin-top: -3%;
+        }
+    </style>
+</head>
+<body>
+    <div class="load">
+    <div class="loading-panel">
+        <div class="inner-loading-panel"></div>
+       
+    </div>
+    <div class="percent">0%</div>
+    <br>
+    <button class="Load">Load</button>
+</div>
+
+<script>
+    let i=5;
+    const loadbtn=document.querySelector('.Load');
+    const innerdiv=document.querySelector('.inner-loading-panel');
+    let percentage=document.querySelector('.percent');
+    console.log(percentage)
+    let width=0;
+    
+    loadbtn.addEventListener('click',function(){
+        // // innerdiv.style.width+=`${10}vh`;
+        // width+=0;
+        // innerdiv.style.width+= width + 'vh';
+        let rand=Math.floor(Math.random() * 101);
+        const interval=setInterval(function(){
+            if(width>=100)
+              {
+                  clearInterval(interval)
+              }
+              else{
+                     width++;
+                     percentage.textContent=`${width}%`
+                     innerdiv.style.width=width + '%'
+              }
+        },10);
+        
+        console.log(rand)
+    })
+</script>
+</body>
+</html>
